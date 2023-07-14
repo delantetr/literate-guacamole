@@ -55,7 +55,7 @@ const signupFormHandler = async (event) => {
 };
 
 // When login form is submitted loginFormHandler will be called
-document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+document.querySelector('.login-form').addEventListener("submit", loginFormHandler);
 
 // When signup form is submitted signupFormHandler will be called
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+document.querySelector('.signup-form').addEventListener("submit", signupFormHandler);
