@@ -15,13 +15,13 @@ Album.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    review_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'review',
-        key: 'id',
-      }
-    },
+    // review_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'review',
+    //     key: 'id',
+    //   }
+    // },
     artist_id: {
       type: DataTypes.INTEGER,
       references: {

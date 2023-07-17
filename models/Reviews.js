@@ -17,6 +17,10 @@ Review.init(
     },
     album_id: {
       type: DataTypes.INTEGER,
+      references: {
+        model: 'album',
+        key: 'id',
+      }
     },
     user_id: {
       type: DataTypes.INTEGER,
