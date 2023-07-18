@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { Artists } = require('../../models');
-const Artist = require('../../models/Artists');
+const { Artists, Albums, Reviews } = require('../../models');
 
 
 
+// GET all artists
 router.get('/', async (req, res) => {
     try {
       const dbArtistData = await Artists.findAll();
@@ -24,12 +24,29 @@ router.get('/', async (req, res) => {
     }
   });
 
+  // GET one artist
   router.get('/:id', async (req, res) => {
     try {
         // Must use artist ID
-      const dbArtistData = await Artist.findByPk(req.params.id, {
+      const dbArtistData = await Artists.findByPk(req.params.id, {
+        include: [
+          {
+            model: Albums,
+            attributes: ['title'],
+            include: [
+              {
+                model: Reviews,
+                attributes: ['review_content'],
+              },
+            ]
+          },
+        ],
       });
   
+      if (!dbArtistData) {
+        return res.status(404).json({ error: 'Artist not found' });
+      }
+      
       const artist = dbArtistData.get({ plain: true });
 
       //Used for testing
