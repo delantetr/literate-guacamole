@@ -4,7 +4,8 @@ const albumdata = [
     {
       title: 'Thank Me Later', 
       review_id: Reviews.review_id,
-      artist_id: 1,  
+      artist_id: 1,
+      album_art_id: null,  
     },
     {
       title: 'Under the Table and Dreaming',
