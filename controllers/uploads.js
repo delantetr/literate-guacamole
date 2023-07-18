@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const path = require('path');
+// const path = require('path');
 const multer = require('multer');
 const upload = multer({ dest: 'public/uploads/' })
 const { Albums, AlbumArt } = require('../models');
