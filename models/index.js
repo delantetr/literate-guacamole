@@ -2,6 +2,7 @@ const User = require('./Users');
 const Albums = require('./Albums');
 const Artists = require('./Artists');
 const Reviews = require('./Reviews');
+const AlbumArt = require('./albumArt');
 
 User.hasMany(Reviews, {
     foreignKey: 'user_id',
@@ -30,4 +31,13 @@ Reviews.belongsTo(Albums, {
     foreignKey: 'album_id',
 });
 
-module.exports = { User, Reviews, Artists, Albums };
+AlbumArt.hasOne(Albums, {
+    foreignKey: 'album_art_id',
+    onDelete: 'CASCADE',
+})
+
+Albums.belongsTo(AlbumArt, {
+    foreignKey: 'album_art_id',
+  });
+
+module.exports = { User, Reviews, Artists, Albums, AlbumArt };
