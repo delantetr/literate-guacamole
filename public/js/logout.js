@@ -8,7 +8,8 @@ const logout = async () => {
     if (response.ok)
     {
         // May need to be changed
-        document.location.replace('/');
+        // document.location.replace('/');
+        document.location.reload();
     }
 
     else
@@ -18,4 +19,7 @@ const logout = async () => {
 };
 
 // When logout button is clicked logout function will be called
-document.querySelector('#logout').addEventListener("click", logout);
+document.querySelector('#logOutButton').addEventListener("click", logout);
+
+// Should display when user is logged in
+console.log("Logout.js is connected");

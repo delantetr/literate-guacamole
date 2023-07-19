@@ -16,7 +16,8 @@ const loginFormHandler = async (event) => {
         if (response.ok)
         {
             // This may need to be changed
-            document.location.replace('/');
+            // document.location.replace('/');
+            document.location.reload();
         }
 
         else
@@ -31,10 +32,13 @@ const signupFormHandler = async (event) => {
     event.preventDefault();
 
     const firstName = document.querySelector('#signUpFirstName').value.trim();
-    const lastName = document.querySelector('#signUplastName').value.trim();
+    const lastName = document.querySelector('#signUpLastName').value.trim();
     const email = document.querySelector('#signUpEmail').value.trim();
-    const username = document.querySelector('#signupUsername').value.trim();
+    const username = document.querySelector('#signUpUsername').value.trim();
     const password = document.querySelector('#signUpPassword').value.trim();
+
+    console.log("User inputs: ");
+    console.log(firstName, lastName, email, username, password);
 
     if (firstName && lastName && email && username && password)
     {
@@ -47,7 +51,9 @@ const signupFormHandler = async (event) => {
         if (response.ok)
         {
             // This may need to be changed
-            document.location.replace('/');
+            console.log("Added to database");
+            // document.location.replace('/');
+            document.location.reload();
         }
 
         else
@@ -58,7 +64,10 @@ const signupFormHandler = async (event) => {
 };
 
 // When login form is submitted loginFormHandler will be called
-document.querySelector('.login-form').addEventListener("submit", loginFormHandler);
+document.querySelector('#login-form').addEventListener("submit", loginFormHandler);
 
 // When signup form is submitted signupFormHandler will be called
-document.querySelector('.signup-form').addEventListener("submit", signupFormHandler);
+document.querySelector('#signup-form').addEventListener("submit", signupFormHandler);
+
+// Should display when user is not logged in
+console.log("login.js is connected");
