@@ -15,7 +15,7 @@ router.get('/:id', async (req, res) => {
         },
         {
           model: Reviews,
-          attributes: ['review_content'],
+          attributes: ['review_content', 'id'],
         },
       ],
     });
@@ -26,7 +26,12 @@ router.get('/:id', async (req, res) => {
 
     const album = albumData.get({ plain: true });
 
-    res.render('album-details', { album });
+    const dbAllArtistsData = await Artists.findAll({});
+    const allArtists = dbAllArtistsData.map(allArtist => 
+      allArtist.get({ plain: true })
+    );
+
+    res.render('album-details', { album, allArtists, loggedIn: req.session.loggedIn });
 
     
   } catch (error) {

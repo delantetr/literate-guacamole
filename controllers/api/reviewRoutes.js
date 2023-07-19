@@ -15,8 +15,9 @@ router.post('/:id', withAuth, async (req, res) => {
       console.log("Album not found");
       return res.status(404).json({ error: 'Album not found' });
     }
+
     const newReview = await Reviews.create({
-      review_content: req.body.review_content,
+      review_content: req.body.reviewText,
       user_id: req.session.user_id,
       album_id: req.params.id
     });
@@ -33,7 +34,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     const reviewData = await Reviews.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
+        // user_id: req.session.user_id,
       },
     });
 
@@ -51,16 +52,16 @@ router.delete('/:id', withAuth, async (req, res) => {
 // UPDATE a review
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const dbReviewData = await Reviews.update(req.body.review_content, {
+    const dbReviewData = await Reviews.update({review_content: req.body.updatedReviewText}, {
       where: {
         id: req.params.id,
       },
       individualHooks: true
     });
-    if (!dbUserData[0]) {
-      res.status(404).json({ message: 'No review found with this id!' });
-      return;
-    }
+    // if (!dbUserData[0]) {
+    //   res.status(404).json({ message: 'No review found with this id!' });
+    //   return;
+    // }
 
     res.status(200).json(dbReviewData);
   } catch (err) {

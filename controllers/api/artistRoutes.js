@@ -49,11 +49,16 @@ router.get('/', async (req, res) => {
       
       const artist = dbArtistData.get({ plain: true });
 
+      const dbAllArtistsData = await Artists.findAll({});
+      const allArtists = dbAllArtistsData.map(allArtist => 
+        allArtist.get({ plain: true })
+      );
+
       //Used for testing
       // res.json(artist) 
 
     //Used for Front-End render
-    res.render('artist-album', { artist: artist });
+    res.render('artist-album', { artist: artist, allArtists });
 
 
     } catch (err) {
