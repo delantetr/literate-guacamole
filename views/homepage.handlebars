@@ -1,29 +1,9 @@
-{{!-- Handlebars for nav --}}
+{{!-- Handlebar for hero area of homepage --}}
 
-<div id="body">
-    <div id="aside">
-        <aside>
-            <ul>
-                {{#each allArtists as |oneArtist|}}
-                    <li>{{oneArtist.name}}
-                        <ul>
-                            {{#each albums as |album|}}
-                                {{!-- Display the name of the album and link for each album per artist --}}
-                                <li><a href="/api/albums/{{album.id}}">{{album.title}}</a></li>
-                            {{/each}}
-                        </ul>
-                    </li>
-                {{/each}}
-            </ul>
-        </aside>
-    </div>
-
-    <div id="hero">
-        <p>{{artist.name}}</p>
-        <p>{{albums.title}}</p>
-        {{#each albums.reviews as |review|}}
-            <p>{{review.review_content}}</p>
-        {{/each}}
-    </div>
+<div id="hero">
+    <h2>{{artist.name}}</h2>
+    <h3>{{albums.title}}</h3>
+    {{#each albums.reviews as |review|}}
+        <p>{{review.review_content}}</p>
+    {{/each}}
 </div>
-

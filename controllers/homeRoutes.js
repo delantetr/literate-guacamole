@@ -35,20 +35,13 @@ router.get('/', async (req, res) => {
     const artist = dbArtistData.get({ plain: true });
   
     // Get all artists for nav area
-    const dbAllArtistsData = await Artists.findAll({
-      include: [
-        {
-          model: Albums,
-          attributes: ['id', 'title'],
-        },
-      ],
-    });
+    const dbAllArtistsData = await Artists.findAll({});
     const allArtists = dbAllArtistsData.map(allArtist => 
       allArtist.get({ plain: true })
     );
   
   // Will render artist, album, and review information on homepage for both hero area and nav
-  res.render('homepage', {albums, artist, allArtists});
+  res.render('homepage', {albums, artist, allArtists, loggedIn: req.session.loggedIn});
   
   } catch (err) {
     console.log(err);
