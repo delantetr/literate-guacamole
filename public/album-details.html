@@ -36,8 +36,26 @@
         <div id="aside"></div>
 
         <div id="hero">
-       
-    </div>
+          <h1>Artist Name</h1>
+          <h2>Album Title</h2>
+        <!-- <img src="{{album.image}}"> -->
+       <form action=“/upload” method=“post” enctype=“multipart/form-data”>
+          <input type=“file” name=“albumArt” accept=“.jpg, .jpeg, .png” />
+          <button type=“submit”>Upload Album Art</button>
+        </form>   
+         <p>Review placeholder</p>
+             
+        
+           
+      
+        <form class="form-floating">
+          <textarea class="form-control" placeholder="Leave review here" id="reviewBox" style="height: 90px"></textarea>
+          <label for="floatingTextarea2">Reviews</label>
+        <button id="reviewSubmitButton" class="btn btn-outline-primary" type="submit">Submit</button>
+        </form>
+        
+        
+      </div>
     </div>
 
     <div id="footer">Copyright @2023</div>
