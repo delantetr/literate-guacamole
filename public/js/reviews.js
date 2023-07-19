@@ -4,29 +4,25 @@
 const addReviewHandler = async (event) => {
     event.preventDefault();
 
-    // Gets album name from HTML page
-    const album = document.querySelector('#album-title').value;
+    // Gets album name from URL
+    const currentURL = window.location.href;
+    const albumID = currentURL.split('/').at(-1);
 
-    // Gets user review text from text area in add review form
+    // Gets user review text from text area in review form
     const reviewText = document.querySelector('#review-text').value;
 
-    // This will not be nessecary as SQL will create review IDs
-    // getLatestReviewID function will be a fetch call get that retrieves the newest review ID
-    // const reviewID = getLatestReviewID + 1;
-
-    if (album && reviewText)
+    if (reviewText)
     {
-        await fetch('/api/reviews/add', {
+        await fetch(`/api/reviews/${albumID}`, {
             method: 'POST',
-            body: JSON.stringify({ album, reviewText }),
+            body: JSON.stringify({ reviewText }),
             headers: { 'Content-Type': 'application/json' },
         })
         .then((res) => res.json())
         .then((data) => {
             console.log("Successfully added review:", data);
-            return data;
-
-            // May need document.location.reload() to display new review
+            document.location.reload();
+            // return data;
         })
         .catch((error) => {
             console.error("Error adding review:", error);
@@ -34,63 +30,62 @@ const addReviewHandler = async (event) => {
     }
 };
 
-// May need to use id as input instead
+// Fetch call PUT that updates existing review
 const updateReviewHandler = async (event) => {
     event.preventDefault();
 
-    const updatedReviewText = document.querySelector('#review-text').value;
+    const fullID = event.submitter.id;
+    const id = fullID.replace("update_", "");
 
-    // Need a way to retreive reviewID for review that needs to be updated
-    // May need to use UserID to get this
+    console.log(id);
+
+    const updatedReviewText = document.querySelector(`#updateReviewText_${id}`).value;
+
+    console.log(updatedReviewText);
 
     if (updatedReviewText)
     {
-        if (event.target.hasAttribute('reviewID'))
-        {
-            const id = event.target.getAttribute('reviewID');
-        
-            await fetch(`/api/reviews/update/${id}`, {
-                method: 'PUT',
-                body: JSON.stringify({ album, updatedReviewText, id }),
-                headers: { 'Content-Type': 'application/json' },
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log("Successfully updated review: " + data);
-            })
-            .catch((error) => {
-                console.error("Error updating review: " + error);
-            });
-        }
-    }
-}
-
-const deleteReviewHandler = async (event) => {
-    event.preventDefault();
-
-    // May need to use this
-    // event.stopPropogation();
-
-    if (event.target.hasAttribute('reviewID'))
-    {
-        const id = event.target.getAttribute('reviewID');
-
-        await fetch(`/api/reviews/delete/${id}`, {
-            method: 'DELETE',
+        await fetch(`/api/reviews/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ updatedReviewText }),
             headers: { 'Content-Type': 'application/json' },
         })
         .then((res) => res.json())
         .then((data) => {
-            console.log("Successfully deleted review: " + data);
+            console.log("Successfully updated review: " + data);
+            document.location.reload();
         })
         .catch((error) => {
-            console.error("Error deleting review: " + error);
+            console.error("Error updating review: " + error);
         });
     }
 }
 
-document.querySelector('.add-review-form').addEventListener("submit", addReviewHandler);
+// Fetch call DELETE that deletes existing review
+const deleteReviewHandler = async (event) => {
+    event.preventDefault();
 
-// May need to change these to listen for click
-document.querySelector('.update-review-form').addEventListener("submit", updateReviewHandler);
-document.querySelector('.delete-review-form').addEventListener("submit", deleteReviewHandler);
+    const fullID = event.submitter.id;
+    const id = fullID.replace("delete_", "");
+
+    console.log(id);
+
+    await fetch(`/api/reviews/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        console.log("Successfully deleted review: " + data);
+        document.location.reload();
+    })
+    .catch((error) => {
+        console.error("Error deleting review: " + error);
+    });
+}
+
+document.querySelector('#reviewForm').addEventListener("submit", addReviewHandler);
+document.querySelector('#updateForm').addEventListener("submit", updateReviewHandler);
+document.querySelector('#deleteForm').addEventListener("submit", deleteReviewHandler);
+
+console.log("Reviews.js is connected");
