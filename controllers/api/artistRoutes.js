@@ -50,10 +50,11 @@ router.get('/', async (req, res) => {
       const artist = dbArtistData.get({ plain: true });
 
       //Used for testing
-      res.json(artist) 
+      // res.json(artist) 
 
     //Used for Front-End render
-    // res.render('album', { homepage, albums);
+    res.render('artist-album', { artist: artist });
+
 
     } catch (err) {
       console.log(err);

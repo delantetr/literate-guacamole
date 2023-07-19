@@ -1,0 +1,26 @@
+<!-- album-details.handlebars -->
+
+<div id="hero" >
+    <h1>{{album.artist.name}}</h1>
+    <h2>{{album.title}}</h2>
+   <img src="{{album.image}}">
+
+      <p>Place holder for Reviews</p>
+       {{#each album.reviews}}
+      <p>
+        Review: {{review_content}}
+     </p>
+      {{/each}}
+
+<form id="reviewForm" class="form-floating">
+  <textarea class="form-control" placeholder="Leave review here" id="review-text" style="height: 90px"></textarea>
+  <label for="review-text">Reviews</label>
+  <button id="reviewSubmitButton" class="btn btn-outline-primary" type="submit">Submit</button>
+</form>
+ 
+</div>
+
+
+
+
+
