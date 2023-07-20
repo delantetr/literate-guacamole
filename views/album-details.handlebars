@@ -1,12 +1,17 @@
 
     <h1>Artist: {{album.artist.name}}</h1>
     <h2>Album: {{album.title}}</h2>
-   <img src="{{album.image}}">
-   
-   <form id="imageUpload" action="/uploads/{{album.id}}" method="post" enctype="multipart/form-data">
-      <input type="file" name="albumArt" accept=".jpg, .jpeg, .png" />
-      <button type="submit">Upload Album Art</button>
-    </form>
+
+    {{#if album.album_art}}
+      <img src="/uploads/{{album.album_art.file_path}}" id="albumArtImg" width="300px" height="300px">
+   {{else}}
+      {{#if loggedIn}}
+        <form id="imageUpload" action="/uploads/{{album.id}}" method="post" enctype="multipart/form-data">
+          <input type="file" name="albumArt" accept=".jpg, .jpeg, .png" />
+          <button type="submit">Upload Album Art</button>
+        </form>
+      {{/if}}
+    {{/if}}
 
 
     {{!-- Form for deleting review --}}
@@ -15,7 +20,7 @@
     <form id="updateForm"></form>
 
        {{#each album.reviews}}
-        <p>
+        <p id="reviewText">
           {{review_content}}
         </p>
         {{#if ../loggedIn}}

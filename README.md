@@ -20,19 +20,19 @@ As a user, I was searching for a platform that could elevate my music discovery 
 
 ## Installation
 Our app is deployed through heroku but to be able to access our files through a code editor you would need: 
--code editor
--command line 
--dependencies :  
-    "bcrypt": "^5.0.0",
-    "connect-session-sequelize": "^7.0.4",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^5.2.0",
-    "express-session": "^1.17.1",
-    "handlebars": "^4.7.6",
-    "multer": "^1.4.5-lts.1",
-    "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
+* Code editor
+* Command line
+* Dependencies :
+    * "bcrypt": "^5.0.0",
+    * "connect-session-sequelize": "^7.0.4",
+    * "dotenv": "^8.2.0",
+    * "express": "^4.17.1",
+    * "express-handlebars": "^5.2.0",
+    * "express-session": "^1.17.1",
+    * "handlebars": "^4.7.6",
+    * "multer": "^1.4.5-lts.1",
+    * "mysql2": "^2.2.5",
+    * "sequelize": "^6.3.5"
 
 ## Usage
 

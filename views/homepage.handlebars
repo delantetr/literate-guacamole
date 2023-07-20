@@ -1,6 +1,9 @@
 
     <h2>{{artist.name}}</h2>
     <h3>{{albums.title}}</h3>
+    {{#if albums.album_art}}
+      <img src="/uploads/{{albums.album_art.file_path}}" id="albumArtImg" width="300px" height="300px">
+    {{/if}}
     {{#each albums.reviews as |review|}}
         <p>{{review.review_content}}</p>
     {{/each}}

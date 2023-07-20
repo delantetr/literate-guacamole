@@ -39,7 +39,8 @@ router.post('/:id', withAuth, upload.single('albumArt'), async (req, res) => {
     existingAlbum.album_art_id = newAlbumArt.id;
     await existingAlbum.save();
 
-    res.status(200).json({ message: 'Album art uploaded and associated with the existing album!' });
+    // res.status(200).json({ message: 'Album art uploaded and associated with the existing album!' });
+    res.redirect(`/api/albums/${albumID}`);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to upload album art or associate it with the existing album.' });
