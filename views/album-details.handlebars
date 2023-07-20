@@ -3,7 +3,11 @@
 
     <h2>Artist: {{album.artist.name}}</h1>
     <h3>Album: {{album.title}}</h2>
-   <img src="{{album.image}}">
+   {{!-- <img src="{{album.image}}"> --}}
+   <form action="/uploads/{{album.id}}" method="post" enctype="multipart/form-data">
+      <input type="file" name="albumArt" accept=".jpg, .jpeg, .png" />
+      <button type="submit">Upload Album Art</button>
+    </form>
 
     {{!-- Form for deleting review --}}
     <form id="deleteForm"></form>
