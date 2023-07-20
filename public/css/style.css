@@ -91,10 +91,19 @@ color:#000000;
     font-family: 'Anton', sans-serif;
 
 }
+#hero ul{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
 #hero ul li {
 list-style-type: none;
 transition: all .15s;
+align-items: center;
+text-align: center;
 
 }
 #hero a{
@@ -197,4 +206,8 @@ p {
     overflow-wrap: break-word;
     max-width: 100%;
     padding: 0px 10px;
+  }
+
+  #imageUpload{
+    margin-bottom: 20px;
   }
