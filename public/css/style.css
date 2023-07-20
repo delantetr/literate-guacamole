@@ -83,7 +83,7 @@ color:#000000;
     
 
 }
-#hero h2{
+#hero h2, #hero h1{
     margin-top: 20px;
     
 }
@@ -97,6 +97,8 @@ color:#000000;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    list-style-type: none;
+    padding: 0;
 }
 
 #hero ul li {
@@ -104,7 +106,7 @@ list-style-type: none;
 transition: all .15s;
 align-items: center;
 text-align: center;
-
+margin: 0;
 }
 #hero a{
 text-decoration: none;
@@ -211,3 +213,11 @@ p {
   #imageUpload{
     margin-bottom: 20px;
   }
+
+#albumArtImg {
+    margin: 20px 0;
+}
+
+#reviewText {
+    font-size: 25px;
+}

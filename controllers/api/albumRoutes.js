@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Albums, Artists, Reviews } = require('../../models');
+const { Albums, Artists, Reviews, AlbumArt} = require('../../models');
 
 // GET one album w/ review and artist info
 router.get('/:id', async (req, res) => {
@@ -17,6 +17,10 @@ router.get('/:id', async (req, res) => {
           model: Reviews,
           attributes: ['review_content', 'id'],
         },
+        {
+          model: AlbumArt,
+          attributes: ['id', 'file_path'],
+        }
       ],
     });
 
@@ -39,8 +43,6 @@ router.get('/:id', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
-module.exports = router;
 
 // GET one album w/ review and artist info
 // router.get('/:id', async (req, res) => {

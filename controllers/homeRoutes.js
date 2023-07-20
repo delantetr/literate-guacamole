@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Albums, Reviews, Artists } = require('../models');
+const { Albums, Reviews, Artists, AlbumArt } = require('../models');
 
 // Custom middleware for withAuth
 // const withAuth = require('../utils/auth');
@@ -22,6 +22,10 @@ router.get('/', async (req, res) => {
           model: Reviews,
           attributes: ['id', 'review_content', 'album_id'],
         },
+        {
+          model: AlbumArt,
+          attributes: ['id', 'file_path'],
+        }
       ],
     });
   
@@ -48,62 +52,5 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-// May not need these
-
-// // GET one album for homepage
-// router.get('/:id', async (req, res) => {
-//   try {
-//     // Must use album ID
-//     const dbAlbumData = await Albums.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: Reviews,
-//           attributes: ['review_content'],
-//         },
-//       ],
-//     });
-  
-//     const albums = dbAlbumData.get({ plain: true });
-
-//     //Used for testing
-//     res.json(albums) 
-
-//   //Used for Front-End render
-//   // res.render('album', { homepage, albums);
-
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
-
-// GET all albums for homepage
-// router.get('/', async (req, res) => {
-//     try {
-//       const dbAlbumData = await Albums.findAll({
-//         include: [
-//           {
-//             model: Reviews,
-//             attributes: ['review_content'],
-//           },
-//         ],
-//       });
-  
-//       const albums = dbAlbumData.map((album) =>
-//         album.get({ plain: true })
-//       );
-
-//       res.json(albums); //Used for testing
-  
-//     //   res.render('homepage', {
-//     //     reviews,
-//     //     // loggedIn: req.session.loggedIn,
-//     //   });
-//     } catch (err) {
-//       console.log(err);
-//       res.status(500).json(err);
-//     }
-//   });
 
 module.exports = router;
