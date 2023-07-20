@@ -22,7 +22,6 @@ router.get('/', async (req, res) => {
     });
 
     if (results.length > 0) {
-      // const finalresults = results.map((result) => result.get({ plain: true }));
       searchType = 'artist';
     } else {
       results = await Albums.findAll({
@@ -43,10 +42,8 @@ router.get('/', async (req, res) => {
     }));
 
     console.log(searchData);
-    // console.log('Search type:', type);
     
     res.json(searchData);
-    // res.render('artist-album', results);
   } catch (error) {
     console.error('Error during search:', error);
     res.status(500).json({ error: 'Failed to perform search.' });

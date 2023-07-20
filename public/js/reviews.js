@@ -84,8 +84,13 @@ const deleteReviewHandler = async (event) => {
     });
 }
 
-document.querySelector('#reviewForm').addEventListener("submit", addReviewHandler);
-document.querySelector('#updateForm').addEventListener("submit", updateReviewHandler);
-document.querySelector('#deleteForm').addEventListener("submit", deleteReviewHandler);
+if (window.location.pathname.includes("/api/albums/"))
+{
+    document.querySelector('#reviewForm').addEventListener("submit", addReviewHandler);
+    document.querySelector('#updateForm').addEventListener("submit", updateReviewHandler);
+    document.querySelector('#deleteForm').addEventListener("submit", deleteReviewHandler);
+
+    console.log("Event listeners connected");
+}
 
 console.log("Reviews.js is connected");
