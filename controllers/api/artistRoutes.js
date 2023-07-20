@@ -32,13 +32,7 @@ router.get('/', async (req, res) => {
         include: [
           {
             model: Albums,
-            attributes: ['title'],
-            include: [
-              {
-                model: Reviews,
-                attributes: ['review_content'],
-              },
-            ]
+            attributes: ['title', 'id'],
           },
         ],
       });
@@ -53,9 +47,6 @@ router.get('/', async (req, res) => {
       const allArtists = dbAllArtistsData.map(allArtist => 
         allArtist.get({ plain: true })
       );
-
-      //Used for testing
-      // res.json(artist) 
 
     //Used for Front-End render
     res.render('artist-album', { artist: artist, allArtists, loggedIn: req.session.loggedIn });
