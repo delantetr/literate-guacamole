@@ -1,9 +1,6 @@
-{{!-- Handlebar for hero area of homepage --}}
 
-<div id="hero">
     <h2>{{artist.name}}</h2>
     <h3>{{albums.title}}</h3>
     {{#each albums.reviews as |review|}}
         <p>{{review.review_content}}</p>
     {{/each}}
-</div>
