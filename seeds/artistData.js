@@ -46,9 +46,6 @@ const artistdata = [
     {
       name: "Deadmau5",    
     },
-    {
-      name: "Deadmau5",    
-    },
 ];
 
 const seedArtists = () => Artists.bulkCreate(artistdata);
