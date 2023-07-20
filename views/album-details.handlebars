@@ -1,13 +1,16 @@
 <!-- album-details.handlebars -->
 
 
-    <h2>Artist: {{album.artist.name}}</h1>
-    <h3>Album: {{album.title}}</h2>
-   {{!-- <img src="{{album.image}}"> --}}
+<div id="hero" >
+    <h1>Artist: {{album.artist.name}}</h1>
+    <h2>Album: {{album.title}}</h2>
+   <img src="{{album.image}}">
+   
    <form action="/uploads/{{album.id}}" method="post" enctype="multipart/form-data">
       <input type="file" name="albumArt" accept=".jpg, .jpeg, .png" />
       <button type="submit">Upload Album Art</button>
     </form>
+
 
     {{!-- Form for deleting review --}}
     <form id="deleteForm"></form>
@@ -56,12 +59,12 @@
       {{/each}}
 
 {{#if loggedIn}}
-<h5>Add New Review</h5>
+<h5>Add New Review</h4>
 <form id="reviewForm" class="form-floating">
   <textarea class="form-control" placeholder="Leave review here" id="review-text" style="height: 90px"></textarea>
   <label for="review-text">Reviews</label>
-  <br>
   <button id="reviewSubmitButton" class="btn btn-outline-primary" type="submit">Submit</button>
 </form>
 {{/if}}
  
+</div>
