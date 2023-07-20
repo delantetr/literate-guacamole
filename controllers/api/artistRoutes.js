@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
       // res.json(artist) 
 
     //Used for Front-End render
-    res.render('artist-album', { artist: artist, allArtists });
+    res.render('artist-album', { artist: artist, allArtists, loggedIn: req.session.loggedIn });
 
 
     } catch (err) {
